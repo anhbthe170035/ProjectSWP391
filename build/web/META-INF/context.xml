@@ -1,2 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context path="/SWP391Project"/>
+<Context path="/SWP391Project" docBase="D:\PROJECT_SWP391_LAST\ProjectSWP391\build\web" reloadable="true">
+    <!-- Các cấu hình khác -->
+</Context>
