@@ -1,41 +1,36 @@
+<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
+<html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Staff Account Management Page</title>
-
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-
     <style>
         .table-wrapper {
             margin: 20px auto;
             max-width: 1200px;
         }
-
         .page-header {
             margin: 20px 0;
         }
-
         .search-bar {
             display: flex;
             justify-content: flex-end;
             margin-bottom: 10px;
         }
-
         .options-col {
             text-align: center;
         }
-
         .btn-options {
             margin-right: 5px;
         }
-
         .pagination {
             justify-content: center;
         }
     </style>
 </head>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 <body>
     <div class="container-fluid">
         <div class="row justify-content-between align-items-center page-header">
@@ -56,7 +51,7 @@
         <!-- Search bar -->
         <div class="search-bar">
             <input type="text" class="form-control w-25" placeholder="Search staffs">
-            <button class="btn btn-outline-secondary ml-2">?</button>
+            <button class="btn btn-outline-secondary ml-2">Search</button>
         </div>
 
         <!-- Table -->
@@ -79,14 +74,15 @@
                             <td>${user.username}</td>
                             <td>${user.email}</td>
                             <td>${user.phoneNumber}</td>
-                           <td>
-        ${user.role.roleName}
-</td>
+                            <td>${user.role.roleName}</td>
                             <td class="options-col">
-    <a href="update_employee.jsp?userId=${user.userId}" class="btn btn-info btn-options">U</a>
-    <button class="btn btn-danger btn-options">D</button>
-    <button class="btn btn-secondary btn-options">V</button>
-</td>
+                                <!-- Nút Update -->
+                                <a href="update_employee.jsp?userId=${user.userId}" class="btn btn-info btn-options">U</a>
+                                <!-- Nút Delete với modal xác nhận -->
+                                <button class="btn btn-danger btn-options" data-toggle="modal" data-target="#confirmDeleteModal" data-userid="${user.userId}">D</button>
+                                <!-- Nút View (nếu cần) -->
+                                <button class="btn btn-secondary btn-options">V</button>
+                            </td>
                         </tr>
                     </c:forEach>
                 </tbody>
@@ -96,35 +92,48 @@
             <a href="create_employee.jsp" class="text-primary">+ Add Staff</a>
 
             <!-- Pagination -->
-            <nav aria-label="Page navigation">
-                <ul class="pagination">
-                    <li class="page-item">
-                        <a class="page-link" href="#"><<</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#"><</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">1</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">2</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">...</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">99</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">>></a>
-                    </li>
-                </ul>
-            </nav>
+            <!-- (Giữ nguyên phần phân trang nếu bạn đã có) -->
+
         </div>
     </div>
 
-    <!-- Bootstrap JS v� JQuery -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Modal xác nhận xóa -->
+    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Xác nhận xóa</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Đóng">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Bạn có chắc chắn muốn xóa nhân viên này không?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+            <a href="#" id="confirmDeleteButton" class="btn btn-danger">Xóa</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS và JQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Script để xử lý sự kiện khi mở modal -->
+    <script>
+        $('#confirmDeleteModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget); // Nút nhấn mở modal
+            var userId = button.data('userid'); // Lấy userId từ thuộc tính data-userid
+            var modal = $(this);
+            var deleteUrl = 'delete-user?userId=' + userId; // Đường dẫn đến servlet xóa
+
+            // Cập nhật href cho nút xác nhận xóa
+            modal.find('#confirmDeleteButton').attr('href', deleteUrl);
+        });
+    </script>
 </body>
+</html>
