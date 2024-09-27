@@ -11,7 +11,7 @@
 <body>
     <div class="container">
         <h2>Create Employee</h2>
-        <form action="create-employee" method="post">
+        <form action="create-user" method="post">
             <div class="form-group">
                 <label for="username">Username</label>
                 <input type="text" class="form-control" id="username" name="username" required>
@@ -26,10 +26,10 @@
             </div>
             <div class="form-group">
                 <label for="role">Role</label>
-                <select class="form-control" id="role" name="role">
-                    <c:forEach var="role" items="${roleList}">
-                        <option value="${role.roleId}">${role.roleName}</option>
-                    </c:forEach>
+                <select class="form-control" id="roleId" name="roleId">
+                    <c:forEach var="role" items="${requestScope.roleList}">
+                        <option name="roleId"  value="${role.roleId}">${role.roleName}</option>
+                    </c:forEach >
                 </select>
             </div>
             <button type="submit" class="btn btn-primary">Create</button>

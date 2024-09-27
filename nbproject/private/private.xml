@@ -2,6 +2,24 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/D:/DH_FPT/Ky_5/SWP391/PROJECT_SWP391/ProjectSWP391/web/home.jsp</file>
+            <file>file:/D:/DH_FPT/Ky_5/SWP391/PROJECT_SWP391/ProjectSWP391/web/update_employee.jsp</file>
+            <file>file:/D:/DH_FPT/Ky_5/SWP391/PROJECT_SWP391/ProjectSWP391/web/create_employee.jsp</file>
+            <file>file:/D:/DH_FPT/Ky_5/SWP391/PROJECT_SWP391/ProjectSWP391/src/java/controller/UpdateUserServlet.java</file>
+            <file>file:/D:/DH_FPT/Ky_5/SWP391/PROJECT_SWP391/ProjectSWP391/src/java/controller/CreateUserServlet.java</file>
+            <file>file:/D:/DH_FPT/Ky_5/SWP391/PROJECT_SWP391/ProjectSWP391/src/java/controller/Homepage.java</file>
+            <file>file:/D:/DH_FPT/Ky_5/SWP391/PROJECT_SWP391/ProjectSWP391/web/delete-user.jsp</file>
+            <file>file:/D:/DH_FPT/Ky_5/SWP391/PROJECT_SWP391/ProjectSWP391/nbproject/build-impl.xml</file>
+            <file>file:/D:/DH_FPT/Ky_5/SWP391/PROJECT_SWP391/ProjectSWP391/web/index.html</file>
+            <file>file:/D:/DH_FPT/Ky_5/SWP391/PROJECT_SWP391/ProjectSWP391/web/WEB-INF/web.xml</file>
+            <file>file:/D:/DH_FPT/Ky_5/SWP391/PROJECT_SWP391/ProjectSWP391/src/java/controller/DeleteUserServlet.java</file>
+            <file>file:/D:/DH_FPT/Ky_5/SWP391/PROJECT_SWP391/ProjectSWP391/src/java/controller/UserListServlet.java</file>
+            <file>file:/D:/DH_FPT/Ky_5/SWP391/PROJECT_SWP391/ProjectSWP391/src/java/entity/Users.java</file>
+            <file>file:/D:/DH_FPT/Ky_5/SWP391/PROJECT_SWP391/ProjectSWP391/src/java/context/DBContext.java</file>
+            <file>file:/D:/DH_FPT/Ky_5/SWP391/PROJECT_SWP391/ProjectSWP391/web/manage_employee.jsp</file>
+            <file>file:/D:/DH_FPT/Ky_5/SWP391/PROJECT_SWP391/ProjectSWP391/src/java/entity/Role.java</file>
+            <file>file:/D:/DH_FPT/Ky_5/SWP391/PROJECT_SWP391/ProjectSWP391/src/java/dao/UserDAO.java</file>
+        </group>
     </open-files>
 </project-private>

@@ -17,37 +17,34 @@ import java.util.logging.Logger;
 
 @WebServlet("/create-user")
 public class CreateUserServlet extends HttpServlet {
-    private UserDAO userDAO;
+    private UserDAO userDAO=new UserDAO();
 
-    @Override
-    public void init() throws ServletException {
-        userDAO = new UserDAO();
-    }
+   
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Role> roles=new ArrayList<>();
+        
         try {
             roles = userDAO.getAllRoles();
         } catch (SQLException ex) {
             Logger.getLogger(CreateUserServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
         request.setAttribute("roleList", roles);
-        request.getRequestDispatcher("create-user.jsp").forward(request, response);
+        request.getRequestDispatcher("create_employee.jsp").forward(request, response);
     }
+    
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("username");
-        String password = request.getParameter("password");
         String email = request.getParameter("email");
-        String phone = request.getParameter("phone");
-        boolean isActive = Boolean.parseBoolean(request.getParameter("isActive"));
-        int pharmacyId = Integer.parseInt(request.getParameter("pharmacyId"));
+        String phone = request.getParameter("phoneNumber");
         int roleId = Integer.parseInt(request.getParameter("roleId"));
 
         Role role = new Role(roleId, ""); // Bạn có thể tạo thêm logic để lấy RoleName
-        Users user = new Users(0, username, password, email, phone, isActive, pharmacyId, role);
+        Users user = new Users( username, email,  phone, role);
 
         try {
             userDAO.createUser(user);

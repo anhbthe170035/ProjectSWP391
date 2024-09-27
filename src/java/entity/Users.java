@@ -32,12 +32,24 @@ public class Users {
         this.pharmacyId = pharmacyId;
         this.role = role;
     }
-
-    public Users(int userId, String username, String email, String phoneNumber) {
+    // Constructor có tham số
+    public Users(int userId, String username, String passwordHash, String email, String phoneNumber, boolean isActive, Role role) {
         this.userId = userId;
+        this.username = username;
+        this.passwordHash = passwordHash;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.isActive = isActive;
+        this.role = role;
+    }
+   
+
+    public Users(String username, String email, String phoneNumber,Role role) {
+        
         this.username = username;
         this.email = email;
         this.phoneNumber = phoneNumber;
+         this.role = role;
     }
 
     // Getter và Setter cho userId

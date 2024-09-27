@@ -17,15 +17,12 @@ public class UserDAO {
 
     // Phương thức để thêm user vào database
     public void createUser(Users user) throws SQLException {
-        String query = "INSERT INTO Users (Username, PasswordHash, Email, PhoneNumber, IsActive, PharmacyID, RoleID) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO Users (Username, Email, PhoneNumber, RoleID) VALUES (?, ?, ?, ?)";
         PreparedStatement stmt = connection.prepareStatement(query);
         stmt.setString(1, user.getUsername());
-        stmt.setString(2, user.getPasswordHash());
-        stmt.setString(3, user.getEmail());
-        stmt.setString(4, user.getPhoneNumber());
-        stmt.setBoolean(5, user.isActive());
-        stmt.setInt(6, user.getPharmacyId());
-        stmt.setInt(7, user.getRole().getRoleId());
+        stmt.setString(2, user.getEmail());
+        stmt.setString(3, user.getPhoneNumber());
+        stmt.setInt(4, user.getRole().getRoleId());
         stmt.executeUpdate();
     }
 
@@ -60,6 +57,7 @@ public class UserDAO {
 
         return roles;
     }
+  
 
     // Phương thức để lấy user theo ID
     public Users getUserById(int userId) throws SQLException {

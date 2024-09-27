@@ -26,6 +26,9 @@
         .btn-options {
             margin-right: 5px;
         }
+        .btn-options:last-child {
+            margin-right: 0;
+        }
         .pagination {
             justify-content: center;
         }
@@ -76,12 +79,12 @@
                             <td>${user.phoneNumber}</td>
                             <td>${user.role.roleName}</td>
                             <td class="options-col">
-                                <!-- Nút Update -->
-                                <a href="update-user?id=${user.userId}" class="btn btn-info btn-options">U</a>
-                                <!-- Nút Delete với modal xác nhận -->
-                                <button class="btn btn-danger btn-options" data-toggle="modal" data-target="#confirmDeleteModal" data-userid="${user.userId}">D</button>
-                                <!-- Nút View (nếu cần) -->
-                                <button class="btn btn-secondary btn-options">V</button>
+                                <div class="d-flex justify-content-center align-items-center">
+                                    <!-- Nút Update -->
+                                    <a href="update-user?id=${user.userId}" class="btn btn-info btn-options">Update</a>
+                                    <!-- Nút Delete với modal xác nhận -->
+                                    <button class="btn btn-danger btn-options" data-toggle="modal" data-target="#confirmDeleteModal" data-userid="${user.userId}">Delete</button>
+                                </div>
                             </td>
                         </tr>
                     </c:forEach>
@@ -89,7 +92,7 @@
             </table>
 
             <!-- Add Staff Link -->
-            <a href="create_employee.jsp" class="text-primary">+ Add Staff</a>
+            <a href="create-user" class="text-primary">+ Add Staff</a>
 
             <!-- Pagination -->
             <!-- (Giữ nguyên phần phân trang nếu bạn đã có) -->
