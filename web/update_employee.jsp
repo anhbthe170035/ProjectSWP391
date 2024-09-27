@@ -11,7 +11,7 @@
 <body>
     <div class="container">
         <h2>Update Employee</h2>
-        <form action="update-employee" method="post">
+        <form action="update-user" method="post">
             <input type="hidden" name="userId" value="${user.userId}">
             <div class="form-group">
                 <label for="username">Username</label>
@@ -25,14 +25,14 @@
                 <label for="phoneNumber">Phone Number</label>
                 <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" value="${user.phoneNumber}" required>
             </div>
-            <div class="form-group">
+<!--            <div class="form-group">
                 <label for="role">Role</label>
                 <select class="form-control" id="role" name="role">
                     <c:forEach var="role" items="${roleList}">
                         <option value="${role.roleId}" ${role.roleId == user.role.roleId ? 'selected' : ''}>${role.roleName}</option>
                     </c:forEach>
                 </select>
-            </div>
+            </div>-->
             <button type="submit" class="btn btn-primary">Update</button>
         </form>
     </div>

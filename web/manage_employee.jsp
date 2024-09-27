@@ -63,7 +63,7 @@
                         <th>Staff Name</th>
                         <th>Email</th>
                         <th>Phone Number</th>
-                        <th>Rules</th>
+                        <th>Roles</th>
                         <th>Options</th>
                     </tr>
                 </thead>
@@ -77,7 +77,7 @@
                             <td>${user.role.roleName}</td>
                             <td class="options-col">
                                 <!-- Nút Update -->
-                                <a href="update_employee.jsp?userId=${user.userId}" class="btn btn-info btn-options">U</a>
+                                <a href="update-user?id=${user.userId}" class="btn btn-info btn-options">U</a>
                                 <!-- Nút Delete với modal xác nhận -->
                                 <button class="btn btn-danger btn-options" data-toggle="modal" data-target="#confirmDeleteModal" data-userid="${user.userId}">D</button>
                                 <!-- Nút View (nếu cần) -->

@@ -33,6 +33,13 @@ public class Users {
         this.role = role;
     }
 
+    public Users(int userId, String username, String email, String phoneNumber) {
+        this.userId = userId;
+        this.username = username;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+    }
+
     // Getter và Setter cho userId
     public int getUserId() {
         return userId;

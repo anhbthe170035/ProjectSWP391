@@ -1,7 +1,6 @@
 package controller;
 
 import dao.UserDAO;
-import entity.Role;
 import entity.Users;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -9,6 +8,9 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @WebServlet("/update-user")
 public class UpdateUserServlet extends HttpServlet {
@@ -25,7 +27,7 @@ public class UpdateUserServlet extends HttpServlet {
         try {
             Users user = userDAO.getUserById(userId);
             request.setAttribute("user", user);
-            request.getRequestDispatcher("update-user.jsp").forward(request, response);
+            request.getRequestDispatcher("update_employee.jsp").forward(request, response);
         } catch (Exception e) {
             throw new ServletException(e);
         }
@@ -33,20 +35,25 @@ public class UpdateUserServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int userId = Integer.parseInt(request.getParameter("id"));
+        int userId = Integer.parseInt(request.getParameter("userId"));
         String username = request.getParameter("username");
-        String password = request.getParameter("password");
         String email = request.getParameter("email");
-        String phone = request.getParameter("phone");
-        boolean isActive = Boolean.parseBoolean(request.getParameter("isActive"));
-        int pharmacyId = Integer.parseInt(request.getParameter("pharmacyId"));
-        int roleId = Integer.parseInt(request.getParameter("roleId"));
+        String phone = request.getParameter("phoneNumber");
+       
+       
 
-        Role role = new Role(roleId, "");
-        Users user = new Users(userId, username, password, email, phone, isActive, pharmacyId, role);
-
+      
+Users u=new Users();
         try {
-            userDAO.updateUser(user);
+            u = userDAO.getUserById(userId);
+        } catch (SQLException ex) {
+            Logger.getLogger(UpdateUserServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+u.setEmail(email);
+u.setPhoneNumber(phone);
+u.setUsername(username);
+        try {
+            userDAO.updateUser(u);
             response.sendRedirect("user-list");
         } catch (Exception e) {
             throw new ServletException(e);

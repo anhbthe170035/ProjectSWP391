@@ -78,16 +78,12 @@ public class UserDAO {
 
     // Phương thức để cập nhật thông tin user
     public void updateUser(Users user) throws SQLException {
-        String query = "UPDATE Users SET Username = ?, PasswordHash = ?, Email = ?, PhoneNumber = ?, IsActive = ?, PharmacyID = ?, RoleID = ? WHERE UserID = ?";
+        String query = "UPDATE Users SET Username = ?, Email = ?, PhoneNumber = ? WHERE UserID = ?";
         PreparedStatement stmt = connection.prepareStatement(query);
         stmt.setString(1, user.getUsername());
-        stmt.setString(2, user.getPasswordHash());
-        stmt.setString(3, user.getEmail());
-        stmt.setString(4, user.getPhoneNumber());
-        stmt.setBoolean(5, user.isActive());
-        stmt.setInt(6, user.getPharmacyId());
-        stmt.setInt(7, user.getRole().getRoleId());
-        stmt.setInt(8, user.getUserId());
+        stmt.setString(2, user.getEmail());
+        stmt.setString(3, user.getPhoneNumber());
+        stmt.setInt(4, user.getUserId());
         stmt.executeUpdate();
     }
 
