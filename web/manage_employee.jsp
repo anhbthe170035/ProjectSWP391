@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Staff Account Management Page</title>
+    <title>Employee Account Management Page</title>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
@@ -37,7 +37,7 @@
 <body>
     <div class="container-fluid">
         <div class="row justify-content-between align-items-center page-header">
-            <h2>Staff Account Management Page</h2>
+            <h2>Employee Account Management Page</h2>
             <div class="d-flex align-items-center">
                 <p class="mb-0 mr-3">Hi, Admin</p>
                 <button class="btn btn-outline-secondary">Logout</button>
@@ -47,7 +47,7 @@
         <!-- Menu -->
         <ul class="nav nav-tabs mb-3">
             <li class="nav-item">
-                <a class="nav-link active" href="#">Staff Account List</a>
+                <a class="nav-link active" href="#">Employee Account List</a>
             </li>
         </ul>
 
@@ -62,8 +62,8 @@
             <table class="table table-bordered table-hover">
                 <thead class="thead-light">
                     <tr>
-                        <th>Staff ID</th>
-                        <th>Staff Name</th>
+                        <th>Emp ID</th>
+                        <th>Emp Name</th>
                         <th>Email</th>
                         <th>Phone Number</th>
                         <th>Roles</th>
@@ -80,9 +80,7 @@
                             <td>${user.role.roleName}</td>
                             <td class="options-col">
                                 <div class="d-flex justify-content-center align-items-center">
-                                    <!-- Nút Update -->
                                     <a href="update-user?id=${user.userId}" class="btn btn-info btn-options">Update</a>
-                                    <!-- Nút Delete với modal xác nhận -->
                                     <button class="btn btn-danger btn-options" data-toggle="modal" data-target="#confirmDeleteModal" data-userid="${user.userId}">Delete</button>
                                 </div>
                             </td>
@@ -92,10 +90,33 @@
             </table>
 
             <!-- Add Staff Link -->
-            <a href="create-user" class="text-primary">+ Add Staff</a>
+            <a href="create-user" class="text-primary">+ Add Emp</a>
 
-            <!-- Pagination -->
-            <!-- (Giữ nguyên phần phân trang nếu bạn đã có) -->
+            <!-- Pagination Controls -->
+            <nav aria-label="Page navigation">
+                <ul class="pagination justify-content-center">
+                    <!-- Previous Page Button -->
+                    <li class="page-item ${currentPage == 1 ? 'disabled' : ''}">
+                        <a class="page-link" href="?page=${currentPage - 1}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+
+                    <!-- Page Numbers -->
+                    <c:forEach var="i" begin="1" end="${totalPages}">
+                        <li class="page-item ${i == currentPage ? 'active' : ''}">
+                            <a class="page-link" href="?page=${i}">${i}</a>
+                        </li>
+                    </c:forEach>
+
+                    <!-- Next Page Button -->
+                    <li class="page-item ${currentPage == totalPages ? 'disabled' : ''}">
+                        <a class="page-link" href="?page=${currentPage + 1}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
 
         </div>
     </div>
@@ -123,18 +144,16 @@
 
     <!-- Bootstrap JS và JQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <!-- Script để xử lý sự kiện khi mở modal -->
     <script>
         $('#confirmDeleteModal').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget); // Nút nhấn mở modal
-            var userId = button.data('userid'); // Lấy userId từ thuộc tính data-userid
+            var button = $(event.relatedTarget); 
+            var userId = button.data('userid'); 
             var modal = $(this);
-            var deleteUrl = 'delete-user?userId=' + userId; // Đường dẫn đến servlet xóa
+            var deleteUrl = 'delete-user?userId=' + userId;
 
-            // Cập nhật href cho nút xác nhận xóa
             modal.find('#confirmDeleteButton').attr('href', deleteUrl);
         });
     </script>
